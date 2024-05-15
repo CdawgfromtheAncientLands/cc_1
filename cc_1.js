@@ -11,18 +11,22 @@ let otherTippercent = 0.2;
 function calcTip(startingBill) {
     return (startingBill >= billLowerThreshold && startingBill <= billUpperThreshold) ? startingBill * thresholdTipPercent : startingBill *otherTippercent;
 }
-
+//Created a function to convert numbers into display-worthy USD
+function USDconvert(amount) {
+    return(new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount))
+}
 //Tip amount determined, assigning to variable.
 //Rounding the tip to its nearest two decimal places.
 //Changed variable name to meet requirements.
-let tip = (Math.round((calcTip(initialBill) + Number.EPSILON) * 100) / 100);
+let tipNum = calcTip(initialBill)
+let tip = USDconvert(tipNum)
 
 //2. Output Details
 //Display a message in the console that includes the bill amount, the tip amount, and the total cost (bill plus tip).
 
-totalCost = (initialBill + tip);
-//Ensured that numbers would go out to 2 decimal places. Not necessary for intialBill.
-console.log("The initial bill was $" + initialBill + ", and the tip was $" + tip.toFixed(2) + ". The total cost came out to be $" + totalCost.toFixed(2) + ".");
+totalCost = USDconvert(initialBill + tipNum)
+
+console.log("The initial bill was $" + initialBill + ", and the tip was " + tip + ". The total cost came out to be " + totalCost + ".");
 
 //3. Develop a function named calcTip that accepts any bill amount as an input and returns the calculated tip, 
 // following the specified rules. 
@@ -31,8 +35,8 @@ console.log("The initial bill was $" + initialBill + ", and the tip was $" + tip
 //Such a function has been made during my completion of step 1. Name updated to become calcTip.
 //Testing function...
 let testBill = 100;
-testTip = calcTip(testBill);
-console.log("The test tip for a test bill of $" + testBill + " is $" + testTip + ".");
+testTip = USDconvert(calcTip(testBill));
+console.log("The test tip for a test bill of $" + testBill + " is " + testTip + ".");
 
 //4. Utilize Arrays
 //Construct an array "bills" containing the test data values.
@@ -40,6 +44,10 @@ console.log("The test tip for a test bill of $" + testBill + " is $" + testTip +
 //Assemble an array "totals" that sums each bill with its respective tip.
 
 const bills = [125, 555, 44];
-const tips = bills.map(calcTip);
-console.log(bills);
-console.log(tips)
+
+const tips = bills.map(calcTip)
+
+const totals = [];
+for (let index = 0; index < bills.length; index++) {
+    totals.push(bills[index] + tips[index]);
+};
