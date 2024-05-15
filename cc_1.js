@@ -8,13 +8,13 @@ let billUpperThreshold = 300;
 let thresholdTipPercent = 0.15;
 let otherTippercent = 0.2;
 
-function tipFunc(startingBill) {
+function calcTip(startingBill) {
     return (startingBill >= billLowerThreshold && startingBill <= billUpperThreshold) ? startingBill * thresholdTipPercent : startingBill *otherTippercent;
 }
 
 //Tip amount determined, assigning to variable.
-//Rounding the top to its nearest two decimal places.
-let roundedTip = (Math.round((tipFunc(initialBill) + Number.EPSILON) * 100) / 100);
+//Rounding the tip to its nearest two decimal places.
+let roundedTip = (Math.round((calcTip(initialBill) + Number.EPSILON) * 100) / 100);
 
 //2. Output Details
 //Display a message in the console that includes the bill amount, the tip amount, and the total cost (bill plus tip).
@@ -22,3 +22,13 @@ let roundedTip = (Math.round((tipFunc(initialBill) + Number.EPSILON) * 100) / 10
 totalCost = (initialBill + roundedTip);
 //Ensured that numbers would go out to 2 decimal places. Not necessary for intialBill.
 console.log("The initial bill was $" + initialBill + ", and the tip was $" + roundedTip.toFixed(2) + ". The total cost came out to be $" + totalCost.toFixed(2) + ".");
+
+//3. Develop a function named calcTip that accepts any bill amount as an input and returns the calculated tip, \
+// following the specified rules. 
+// Test this function with a bill value of $100.
+
+//Such a function has been made during my completion of step 1. Name updated to become calcTip.
+//Testing function...
+let testBill = 100
+testTip = calcTip(testBill)
+console.log (testTip)
