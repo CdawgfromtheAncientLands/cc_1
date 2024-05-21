@@ -44,7 +44,7 @@ console.log("The test tip for a test bill of $" + testBill + " is " + testTip + 
 //Generate an array, "tips" where each entry is the result of calling your calcTip function for each corresponding bill value.
 //Assemble an array "totals" that sums each bill with its respective tip.
 
-const bills = [125, 555, 44];
+const bills = [125, 555, 44, 275, 40, 430];
 
 const tips = bills.map(calcTip)
 
